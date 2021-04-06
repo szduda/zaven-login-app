@@ -4,6 +4,7 @@ import Dashboard from './Dashboard';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { useCookies, CookiesProvider } from 'react-cookie';
+import UserContext from './user.context'
 
 function App() {
   const [cookies] = useCookies(['token'])
@@ -12,25 +13,27 @@ function App() {
     <div className="App">
       <CookiesProvider>
         <Router>
-          <Switch>
+          <UserContext>
+            <Switch>
 
-            <Route path="/login">
-              {cookies.token
-                ? <Redirect to="/dashboard" />
-                : <LoginForm />}
-            </Route>
+              <Route path="/login">
+                {cookies.token
+                  ? <Redirect to="/dashboard" />
+                  : <LoginForm />}
+              </Route>
 
-            <Route path="/dashboard">
-              {cookies.token
-                ? <Dashboard />
-                : <Redirect to="/login" />}
-            </Route>
+              <Route path="/dashboard">
+                {cookies.token
+                  ? <Dashboard />
+                  : <Redirect to="/login" />}
+              </Route>
 
-            <Route path="/">
-              <Redirect to="/login" />
-            </Route>
+              <Route path="/">
+                <Redirect to="/login" />
+              </Route>
 
-          </Switch>
+            </Switch>
+          </UserContext>
         </Router>
       </CookiesProvider>
     </div>

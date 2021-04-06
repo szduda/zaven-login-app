@@ -10,7 +10,7 @@ type LoginResponse = {
 const loginEndpoint = `${process.env.REACT_APP_API_BASE_URL}/login`
 
 const LoginForm = () => {
-  const [cookies, setCookie] = useCookies(['token']);
+  const [, setCookie] = useCookies(['token']);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,6 +23,8 @@ const LoginForm = () => {
       })
 
       setCookie('token', response.data.token)
+
+      // for some reason history.push is not working :(
       document.location.reload()
 
     } catch (error) {
