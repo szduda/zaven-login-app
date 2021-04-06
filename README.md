@@ -2,7 +2,7 @@
 This is a simple login app. Your goal is to improve the app doing following tasks. (Clone this repository and place in on your github)
 
 ## Tasks
-1. Add reactstrap library and rework the login form using bootstrap styles
+1. - [x] Add reactstrap library and rework the login form using bootstrap styles
 2. Add React Router library, move Login form to /login route (and make it default route)
 3. Replace login fetch with axios library
 4. Move API base url to environment variable
