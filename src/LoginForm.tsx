@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import axios from 'axios';
+import { useCookies } from 'react-cookie'
 
 type LoginResponse = {
-  token: String
+  token: string
 }
 
 const loginEndpoint = `${process.env.REACT_APP_API_BASE_URL}/login`
 
 const LoginForm = () => {
+  const [cookies, setCookie] = useCookies(['token']);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,8 +22,8 @@ const LoginForm = () => {
         password
       })
 
-      alert("Success!")
-      console.log(response.data.token)
+      setCookie('token', response.data.token)
+      document.location.reload()
 
     } catch (error) {
       if (error.response) {
@@ -33,24 +35,26 @@ const LoginForm = () => {
   }
 
   return (
-    <Form className="form" onSubmit={submit}>
-      <FormGroup>
-        <Input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="mb-3"
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </FormGroup>
-      <Button type="submit">Sign in</Button>
-    </Form>
+    <>
+      <Form className="form" onSubmit={submit}>
+        <FormGroup>
+          <Input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="mb-3"
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormGroup>
+        <Button type="submit">Sign in</Button>
+      </Form>
+    </>
   );
 };
 

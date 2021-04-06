@@ -7,13 +7,13 @@ This is a simple login app. Your goal is to improve the app doing following task
 3. - [x] Replace login fetch with axios library
 4. - [x] Move API base url to environment variable
 6. Add validation for the login form (with error handling from the API)
-7. Add empty /dashboard route and redirect user to the Dashboard after logging in
-8. Store User token in cookies after logging in
-9. Create public route for /login and private route for /dashboard (user should be redirected from /dashboard to /login if is not logged in)
+7. - [x] Add empty /dashboard route and redirect user to the Dashboard after logging in
+8. - [x] Store User token in cookies after logging in
+9. - [x] Create public route for /login and private route for /dashboard (user should be redirected from /dashboard to /login if is not logged in)
 10. When User enters private route, get User data from API (GET /user) and store it using React Context
-11. Add Bootstrap Navbar to the Dashboard view 
+11. - [x] Add Bootstrap Navbar to the Dashboard view 
 12. Using React Context display User first name and last name in the Navbar
-13. Add logging out functionality (clear session). Place it in the Navbar
+13. - [x] Add logging out functionality (clear session). Place it in the Navbar
 
 ## Running the app
 ### `npm run mock`
