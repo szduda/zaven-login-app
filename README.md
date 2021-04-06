@@ -6,7 +6,7 @@ This is a simple login app. Your goal is to improve the app doing following task
 2. - [x] Add React Router library, move Login form to /login route (and make it default route)
 3. - [x] Replace login fetch with axios library
 4. - [x] Move API base url to environment variable
-6. - [ ] Add validation for the login form (with error handling from the API)
+6. - [x] Add validation for the login form (with error handling from the API)
 7. - [x] Add empty /dashboard route and redirect user to the Dashboard after logging in
 8. - [x] Store User token in cookies after logging in
 9. - [x] Create public route for /login and private route for /dashboard (user should be redirected from /dashboard to /login if is not logged in)
