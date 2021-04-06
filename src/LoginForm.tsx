@@ -1,29 +1,36 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Input, Button } from 'reactstrap';
+import axios from 'axios';
+
+type LoginResponse = {
+  token: String
+}
+
+const loginEndpoint = `${process.env.REACT_APP_API_BASE_URL}/login`
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetch("http://localhost:3333/login", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    }).then((response) => {
-      if (response.ok) {
-        alert("Success!");
+    try {
+      const response = await axios.post<LoginResponse>(loginEndpoint, {
+        username,
+        password
+      })
+
+      alert("Success!")
+      console.log(response.data.token)
+
+    } catch (error) {
+      if (error.response) {
+        alert(`Failed!\n${error.response.data}`)
       } else {
-        alert("Failed!");
+        alert(`Failed!`)
       }
-    });
-  };
+    };
+  }
 
   return (
     <Form className="form" onSubmit={submit}>
